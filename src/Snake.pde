@@ -3,13 +3,13 @@ int DELAY = 10;
 int SCALE = 10;
 int w, h;
 
-Cell apple;
-Player player;
-ArrayList<Character> queue = new ArrayList<>();
-
 color SNAKE_COLOR = color(0, 175, 0);
 color DARK_SNAKE = color(0, 150, 0);
 color APPLE_COLOR = color(225, 0, 0);
+
+ArrayList<Character> queue = new ArrayList<>();
+Cell apple = new Cell(5, 5, APPLE_COLOR);
+Player player = new Player();
 
 boolean playing = false;
 boolean gameover = false;
@@ -26,9 +26,6 @@ void setup() {
 
   w = width / SCALE;
   h = height / SCALE;
-
-  apple = new Cell(5, 5, APPLE_COLOR);
-  player = new Player();
 }
 
 void draw() {
