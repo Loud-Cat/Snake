@@ -33,7 +33,6 @@ void draw() {
 
   noFill();
   stroke(100);
-
   for (int r = 0; r < SCALE; r++)
     for (int c = 0; c < SCALE; c++)
       rect(w*c, h*r, w, h);
