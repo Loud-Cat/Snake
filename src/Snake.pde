@@ -43,10 +43,8 @@ void draw() {
   if (paused) pause();
   if (!focused && frameCount > 1) pause();
 
-  if (player.score() == SCALE * SCALE) {
+  if (player.score() == SCALE * SCALE)
     win();
-    return;
-  }
 
   if (frameCount % DELAY == 0) {
     if (queue.size() > 0)
@@ -54,7 +52,7 @@ void draw() {
 
     player.update();
   }
-  
+
   if (!playing) {
     startScreen();
     return;
@@ -111,6 +109,7 @@ void gameOver() {
 void win() {
   freeze();
 
+  gameover = true;
   text("You Win!", width/2, h * 1.5);
   text("Score: " + player.score(), width/2, h * 2.5);
 }
