@@ -3,15 +3,16 @@ int DELAY = 10;
 int SCALE = 10;
 int w, h;
 
-int highscore = 0;
-
 Cell apple;
 Player player;
 ArrayList<Character> queue = new ArrayList<>();
 
-color SNAKE_COLOR = color(0, 200, 0);
-color DARK_SNAKE = color(0, 175, 0);
+color SNAKE_COLOR = color(0, 175, 0);
+color DARK_SNAKE = color(0, 150, 0);
+
 boolean playing = false;
+boolean gameover = false;
+boolean paused = false;
 
 void setup() {
   size(802, 802);
@@ -86,7 +87,6 @@ void freeze() {
   fill(0);
 }
 
-boolean paused = false;
 void pause() {
   freeze();
   text("Paused", width/2, h * 1.5);
@@ -105,8 +105,10 @@ void startScreen() {
 void gameOver() {
   freeze();
 
+  gameover = true;
   text("Game Over!", width/2, h * 1.5);
   text("Score: " + player.score(), width/2, h * 2.5);
+  text("Click to play again", width/2, h * 3.5);
 }
 
 void win() {
@@ -120,16 +122,19 @@ void reset() {
   loop();
 
   playing = true;
+  gameover = false;
+  paused = false;
+
   player.reset();
   queue.clear();
+
   randomize();
-  
   updateScore();
 }
 
 void updateScore() {
-  highscore = max(highscore, player.score());
-  String title = String.format("Snake! | Score: %d | High Score: %d", player.score(), highscore);
+  player.highscore = max(player.highscore, player.score());
+  String title = String.format("Snake! | Score: %d | High Score: %d", player.score(), player.highscore);
   surface.setTitle(title);
 }
 
@@ -144,6 +149,6 @@ void keyPressed() {
 }
 
 void mouseClicked() {
-  if (!isLooping() && !paused)
+  if (gameover || !playing)
     reset();
 }
