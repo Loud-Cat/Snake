@@ -1,7 +1,7 @@
 
 class Player {
   ArrayList<Cell> body;
-  int xspeed, yspeed;
+  int xspeed, yspeed, highscore;
 
   Player() {
     body = new ArrayList<Cell>();
@@ -9,6 +9,7 @@ class Player {
 
     xspeed = 1;
     yspeed = 0;
+    highscore = 0;
   }
 
   void show() {
@@ -38,8 +39,8 @@ class Player {
     body.remove(butt);
     body.add(butt);
 
-    butt.cellColor = DARK_SNAKE;
     head.cellColor = SNAKE_COLOR;
+    butt.cellColor = DARK_SNAKE;
   }
 
   void xSpeed(int xs) { yspeed = 0; xspeed = xs; }
