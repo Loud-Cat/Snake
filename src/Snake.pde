@@ -9,6 +9,7 @@ ArrayList<Character> queue = new ArrayList<>();
 
 color SNAKE_COLOR = color(0, 175, 0);
 color DARK_SNAKE = color(0, 150, 0);
+color APPLE_COLOR = color(225, 0, 0);
 
 boolean playing = false;
 boolean gameover = false;
@@ -26,7 +27,7 @@ void setup() {
   w = width / SCALE;
   h = height / SCALE;
 
-  apple = new Cell(5, 5, color(255, 0, 0));
+  apple = new Cell(5, 5, APPLE_COLOR);
   player = new Player();
 }
 
